@@ -2,7 +2,7 @@
 
 Exploring customer geography, geolocation data quality, order payments, and delivery experience with **Python, PySpark, Databricks, pandas, NumPy, SciPy, and Matplotlib**.
 
-Adapted by **Farida Belal** from CSCI 443 Homework 6 at the University of Mississippi. The questions originated in coursework. This edition reorganizes the submitted analysis and revises selected code and explanations for a portfolio audience.
+Originally developed for a data science course at the University of Mississippi.
 
 ## What this project does
 
@@ -12,11 +12,11 @@ Adapted by **Farida Belal** from CSCI 443 Homework 6 at the University of Missis
 - Joins orders, customers, and payments to compare summed order payments in São Paulo and Rio de Janeiro states.
 - Explores the association between delivery duration and review score using Pearson correlation and permutation testing.
 
-## Findings from the original saved run
+## Findings
 
-These are historical outputs from the submitted homework, **not results from a fresh run of the revised notebook**.
+Results below come from the executed Databricks notebook, reviewed on October 5, 2026.
 
-| Measure | Original result |
+| Measure | Result |
 |---|---:|
 | Distinct customer IDs | 99,441 |
 | Distinct customer-unique IDs | 96,096 |
@@ -30,8 +30,10 @@ These are historical outputs from the submitted homework, **not results from a f
 | Mean difference, SP − RJ | −23.16 |
 | Welch t-test | t ≈ −9.83; p ≈ 9.81 × 10⁻²³ |
 | Delivery duration / review score correlation | r ≈ −0.334 |
+| Payment permutation p-value (two-sided) | 0.00019996 |
+| Correlation permutation p-value (one-sided) | 0.00019996 |
 
-The original sample showed lower mean order payments in SP and lower review scores associated with longer delivery times. These are observational findings, not causal conclusions.
+The analyzed sample showed lower mean order payments in SP and lower review scores associated with longer delivery times. These are observational findings, not causal conclusions.
 
 ## Files
 
@@ -52,7 +54,7 @@ The original sample showed lower mean order payments in SP and lower review scor
 3. Import `olist_ecommerce_analysis.ipynb` into Databricks and attach Python/Spark compute.
 4. Ensure NumPy, pandas, SciPy, Matplotlib, and psutil are available in the notebook environment. Package versions are not pinned because the original runtime versions were not supplied.
 5. Set `DATA_DIR` in the setup cell to your volume directory and run all cells in order.
-6. Review the results, update historical findings if appropriate, and export the executed notebook with outputs before publishing it on GitHub.
+6. Review the results and export with outputs if you change the data or analysis. The included notebook already contains outputs from the completed run.
 
 Raw datasets are not included. This notebook uses Databricks `dbutils` and `display`; it is not configured as a standalone local Jupyter application. Both permutation sections use 5,000 draws and may take several minutes. The seed makes draws reproducible for a fixed input ordering; Spark row ordering may vary across runs.
 
@@ -69,4 +71,6 @@ Raw datasets are not included. This notebook uses Databricks `dbutils` and `disp
 
 ## Verification status
 
-The revised file passed structural checks and Python syntax checks. The Olist CSV files and a connected Databricks runtime were not supplied, so the revised analysis has **not been executed end to end**. All code outputs are intentionally cleared. Multiline CSV handling was corrected; this can change review parsing and downstream statistics. Rerun before presenting the historical figures as current results.
+The user executed the notebook in Databricks and supplied the exported file. Its saved outputs were inspected: no error outputs were present, seven charts were included, and the reported key results matched the summary above. Python code passed syntax checks. This review did not independently rerun the analysis or audit the underlying CSV files.
+
+Final preparation changed narrative and removed Databricks workspace metadata. Executed code and saved outputs were preserved. Both permutation estimates use the plus-one correction; approximately 0.0002 is the minimum attainable estimate with 5,000 draws, not an exact tail probability.
